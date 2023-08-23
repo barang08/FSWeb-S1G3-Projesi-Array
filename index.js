@@ -17,7 +17,7 @@ const orijinalTatlar = [
   "Badem",
   "Kahve",
   "Fındık",
-  "Anten Fıstık",
+  "Antep Fıstık",
   "Limon",
   "Misket Limon",
   "Akçaağaç Şurubu",
@@ -40,8 +40,9 @@ Aşağıdakileri yapmak için aşağıdaki kopyalama işlevini kullanın:
 */
 
 
-function kopyala(/*kod buraya*/){
-  /*kod buraya*/
+function kopyala(birDizi){
+  const cloneDizi = [...birDizi];
+  return cloneDizi;
 }
 
 
@@ -56,10 +57,14 @@ Bir dizinin tam olarak 25 çeşit olduğunu onaylayın. İşleviniz şunları ka
 */
 
 
-function dizi25Cesitmi(/*kod buraya*/){
-  /*kod buraya*/
+function dizi25Cesitmi(birDizi){
+  if (birDizi.length === 25){
+    return true
+  }else{
+    return false
+  }
 }
-
+console.log(dizi25Cesitmi(orijinalTatlar))
 
 /* Görev 3:
 Pastane sahibi size yeni bir lezzet fikriyle geldi: Kakule! Bunun da çok tutacağından çok emin. Bu lezzeti eklemek için diziyi değiştirmeniz gerekir.
@@ -74,9 +79,11 @@ Aşağıdakileri yapmak için cesitEkle işlevini kullanın:
 */
 
 
-function cesitEkle(/*kod buraya*/){
-  /*kod buraya*/
+function cesitEkle(birDizi, birTat){
+  birDizi.unshift(birTat);
+  return(birDizi)
 }
+console.log(cesitEkle(orijinalTatlar,"Kakule"))
 
 
 /* Cörev 4:
@@ -92,8 +99,9 @@ Aşağıdakileri yapmak için sonCesitiKaldir işlevini kullanın:
 */
 
 
-function sonCesitiKaldir(/*kod buraya*/){
-  /*kod buraya*/
+function sonCesitiKaldir(birDizi){
+  birDizi.pop()
+  return birDizi;
 }
 
 
@@ -108,10 +116,10 @@ Aşağıdakileri yapmak için aşağıdaki indekstekiCesitiGetir işlevini kulla
    Örneğin: indekstekiCesitiGetir(orijinalTatlar, 2) çalıştırılmasıyla, Kakule'in başarıyla eklendiği varsayarsak sonuç "Ceviz" olucaktır.
 */
 
-function indekstekiCesitiGetir(/*kod buraya*/){
-  /*kod buraya*/
+function indekstekiCesitiGetir(birDizi,birIndex){
+  return birDizi[birIndex];
 }
-
+console.log(indekstekiCesitiGetir(orijinalTatlar,2))
 
 /* Görev 6:
 
@@ -128,10 +136,12 @@ Aşağıdakileri yapmak için ismeGoreCesitCikar işlevini kullanın:
   İPUCU: Bunun için .splice() kullanabilirsiniz.
 */
 
-function ismeGoreCesitCikar(/*kod buraya*/){
-  /*kod buraya*/
+function ismeGoreCesitCikar(birDizi,birTat){
+  const index = birDizi.indexOf(birTat);
+  birDizi.splice(index,1)
+  return birDizi
 }
-
+console.log(ismeGoreCesitCikar(orijinalTatlar,"Tarçın"))
 
 /* Görev 7:
 
@@ -154,12 +164,20 @@ Aşağıdakileri yapmak için ismeGoreFiltrele işlevini kullanın:
 */
 
 
-function ismeGoreFiltrele(/*kod buraya*/){
-  /*kod buraya*/
+function ismeGoreFiltrele(birDizi, birTat) {
+  const yenidizi = [];
+  for (let i = 0; i < birDizi.length; i++) {
+    if (birDizi[i].includes(birTat)) {
+      yenidizi.push(birDizi[i]);
+    }
+  }
+  return yenidizi; // Fonksiyon sonucunu döndürmeyi unutmayın.
 }
 
 
 
+
+console.log(ismeGoreFiltrele(orijinalTatlar,"Çikolata"))
 /* ALIŞTIRMA */
 
 /* ALIŞTIRMA 1: Bir dizideki ortalama kelime sayısını döndüren bir fonksiyon yazın. Bu işlevi orijinalTatlar dizisinde test etmelisiniz, ancak bunu herhangi bir dizi için de kullanabilmelisiniz.
@@ -172,10 +190,14 @@ Aşağıdakileri yapmak için ortalamaKelimeSayisi işlevini kullanın:
    Örneğin: ortalamaKelimeSayisi(orijinalTatlar) 0 ile 2 arasında bir sayı döndürmelidir.
 */
 
-function ortalamaKelimeSayisi(/*kod buraya*/){
-  /*kod buraya*/
+function ortalamaKelimeSayisi(birDizi){
+  return birDizi.join(" ")
+         .split(" ")
+         .length 
+        birDizi.length;
+  
 }
-
+console.log(ortalamaKelimeSayisi(orijinalTatlar));
 
 /* ALIŞTIRMA 2:
 Firma mevcut tatların yanında artık mevsimlik lezzetler ve hatta bölgesel lezzetler de sunmaktadır. Toplam 25 lezzet aromasını
@@ -190,9 +212,16 @@ Aşağıdakileri yapmak için rastgeleTatlar işlevini ve yeni dizileri kullanı
 */
 
 
-function rastgeleTatlar(/*kod buraya*/){
-  /*kod buraya*/
+function rastgeleTatlar(tatlarBir, tatlarIki, tatlarUc, tatlarDort){
+  const butunTatlar = [...tatlarBir, ...tatlarIki, ...tatlarUc, ...tatlarDort]
+  const rastgeleTatlar = []
+  for (let i =0; i<25; i++){
+    const randomIndex = Math.floor(Math.random()*butunTatlar.length);
+    rastgeleTatlar.push(butunTatlar[randomIndex])
+  }
+  return rastgeleTatlar;
 }
+
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
 // const yeniTatlar = [
